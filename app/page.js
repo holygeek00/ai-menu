@@ -18,6 +18,15 @@ export default function Home () {
     setTargetLanguage(e.target.value)
   }
 
+  const handleCaptureClick = async () => {
+    const captureInput = document.createElement('input')
+    captureInput.type = 'file'
+    captureInput.accept = 'image/*'
+    captureInput.capture = 'camera'
+    captureInput.onchange = handleFileChange
+    captureInput.click()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
@@ -59,8 +68,8 @@ export default function Home () {
   ]
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+    <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-100">
+      <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-center">AI 菜单翻译器</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
@@ -73,6 +82,14 @@ export default function Home () {
               disabled={isLoading}
             />
           </label>
+          <button
+            type="button"
+            onClick={handleCaptureClick}
+            className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Uploading...' : 'Capture Image'}
+          </button>
           <label className="block">
             <span className="text-gray-700">Target Language:</span>
             <select
