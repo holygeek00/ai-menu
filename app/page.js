@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 
@@ -9,6 +9,7 @@ export default function Home () {
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [translatedText, setTranslatedText] = useState('')
+  const [currentTitle, setCurrentTitle] = useState('AI Menu')
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
@@ -55,13 +56,36 @@ export default function Home () {
     { code: 'Русский', name: 'Русский' },
     { code: 'العربية', name: 'العربية' },
     { code: 'Português', name: 'Português' },
+    { code: 'English', name: 'English' }
     // Add more languages as needed
   ]
 
+  const titles = [
+    'AI Menu',
+    'AI菜单',
+    'Menú de AI',
+    'Menu AI',
+    'AI-Menü',
+    'AIメニュー',
+    'AI 메뉴',
+    'Меню AI',
+    'قائمة AI',
+    'Menu AI'
+  ]
+
+  useEffect(() => {
+    let currentIndex = 0
+    const intervalId = setInterval(() => {
+      setCurrentTitle(titles[currentIndex])
+      currentIndex = (currentIndex + 1) % titles.length
+    }, 2000) // Change title every 2 seconds
+    return () => clearInterval(intervalId)
+  }, [])
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-gray-100">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-3xl font-bold mb-6 text-center">AI Menu</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gray-100">
+      <div className="max-w-md w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
+        <h1 className="text-2xl md:text-3xl font-bold mb-6 text-center">{currentTitle}</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <label className="block">
@@ -69,7 +93,7 @@ export default function Home () {
             <input
               type="file"
               onChange={handleFileChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
               disabled={isLoading}
             />
           </label>
@@ -78,7 +102,7 @@ export default function Home () {
             <select
               value={targetLanguage}
               onChange={handleLanguageChange}
-              className="block w-full mt-1 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              className="block w-full mt-1 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               disabled={isLoading}
             >
               <option value="">Select a language</option>
