@@ -30,7 +30,7 @@ export default function Home () {
     setTranslatedText('')
 
     try {
-      const response = await axios.post('https://bb.naassh.com/upload', formData, {
+      const response = await axios.post('https://bb.naassh.com/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
