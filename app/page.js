@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
-
+import Link from 'next/link'
 export default function Home () {
   const [file, setFile] = useState(null)
   const [targetLanguage, setTargetLanguage] = useState('')
@@ -133,6 +133,11 @@ export default function Home () {
             <ReactMarkdown className="prose text-white">{translatedText}</ReactMarkdown>
           </div>
         )}
+      </div>
+      <div className="mt-4 text-center">
+        <Link href="/about">
+          <div className="text-blue-400 hover:underline">About Me</div>
+        </Link>
       </div>
       <footer className="mt-8">
         <p className="text-gray-500 text-sm">© 2024 Naassh Ltd. All rights reserved.</p>
