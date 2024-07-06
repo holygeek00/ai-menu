@@ -53,6 +53,11 @@ export default function About () {
             Or reach out via email: <a href="mailto:admin@naassh.com" className="text-blue-400 hover:underline">admin@naassh.com</a>
           </p>
         </div>
+        <div className="flex justify-center mt-6">
+          <Link href="/">
+            <a className="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-500">Back</a>
+          </Link>
+        </div>
       </div>
       <footer className="mt-8">
         <p className="text-gray-500 text-sm">© 2024 Naassh Ltd. All rights reserved.</p>
