@@ -130,7 +130,7 @@ export default function Home () {
         {translatedText && (
           <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner">
             <h2 className="text-xl font-semibold mb-2">Translated Text:</h2>
-            <ReactMarkdown className="prose">{translatedText}</ReactMarkdown>
+            <ReactMarkdown className="prose text-black">{translatedText}</ReactMarkdown>
           </div>
         )}
       </div>
