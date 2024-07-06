@@ -11,6 +11,17 @@ export default function Home () {
   const [isLoading, setIsLoading] = useState(false)
   const [translatedText, setTranslatedText] = useState('')
   const [currentTitle, setCurrentTitle] = useState('AI Menu')
+  const [userId, setUserId] = useState('')
+  const [totalStats, setTotalStats] = useState([])
+
+  useEffect(() => {
+    let storedUserId = localStorage.getItem('userId')
+    if (!storedUserId) {
+      storedUserId = Math.random().toString(36).substr(2, 9)
+      localStorage.setItem('userId', storedUserId)
+    }
+    setUserId(storedUserId)
+  }, [])
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0])
@@ -25,6 +36,7 @@ export default function Home () {
     const formData = new FormData()
     formData.append('file', file)
     formData.append('target_language', targetLanguage)
+    formData.append('user_id', userId)
 
     setIsLoading(true)
     setMessage('')
@@ -46,6 +58,26 @@ export default function Home () {
       setIsLoading(false)
     }
   }
+
+  useEffect(() => {
+    const fetchTotalStats = async () => {
+      try {
+        const response = await axios.get('https://bb.naassh.com/stats/total')
+        setTotalStats(response.data.total_stats)
+      } catch (error) {
+        console.error('Error fetching total stats:', error)
+      }
+    }
+
+    fetchTotalStats()
+
+    let currentIndex = 0
+    const intervalId = setInterval(() => {
+      setCurrentTitle(titles[currentIndex])
+      currentIndex = (currentIndex + 1) % titles.length
+    }, 2000) // Change title every 2 seconds
+    return () => clearInterval(intervalId)
+  }, [])
 
   const languages = [
     { code: '中文', name: '中文' },
@@ -73,15 +105,6 @@ export default function Home () {
     'قائمة AI',
     'Menu AI'
   ]
-
-  useEffect(() => {
-    let currentIndex = 0
-    const intervalId = setInterval(() => {
-      setCurrentTitle(titles[currentIndex])
-      currentIndex = (currentIndex + 1) % titles.length
-    }, 2000) // Change title every 2 seconds
-    return () => clearInterval(intervalId)
-  }, [])
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gradient-to-r from-gray-700 via-gray-900 to-black">
@@ -134,6 +157,22 @@ export default function Home () {
             <ReactMarkdown className="prose text-white">{translatedText}</ReactMarkdown>
           </div>
         )}
+
+        <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-inner">
+          <h2 className="text-xl text-blue-300 font-semibold mb-2">Total Usage Stats:</h2>
+          <ul className="text-white">
+            {totalStats.map((stat, index) => (
+              <li key={index} className="mb-2">
+                <div className="bg-gray-700 p-4 rounded-lg shadow">
+                  <p><span className="font-semibold">Action:</span> {stat.action}</p>
+                  <p><span className="font-semibold">Count:</span> {stat.count}</p>
+                  <p><span className="font-semibold">First Use:</span> {new Date(stat.first_use).toLocaleString()}</p>
+                  <p><span className="font-semibold">Last Use:</span> {new Date(stat.last_use).toLocaleString()}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
       <div className="mt-4 text-center">
         <Link href="/about">
