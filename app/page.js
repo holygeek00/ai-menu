@@ -164,10 +164,7 @@ export default function Home () {
             {totalStats.map((stat, index) => (
               <li key={index} className="mb-2">
                 <div className="bg-gray-700 p-4 rounded-lg shadow">
-                  <p><span className="font-semibold">Action:</span> {stat.action}</p>
                   <p><span className="font-semibold">Count:</span> {stat.count}</p>
-                  <p><span className="font-semibold">First Use:</span> {new Date(stat.first_use).toLocaleString()}</p>
-                  <p><span className="font-semibold">Last Use:</span> {new Date(stat.last_use).toLocaleString()}</p>
                 </div>
               </li>
             ))}
