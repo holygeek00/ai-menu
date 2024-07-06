@@ -134,6 +134,9 @@ export default function Home () {
           </div>
         )}
       </div>
+      <footer className="mt-8">
+        <p className="text-gray-500 text-sm">© 2024 Naassh Ltd. All rights reserved.</p>
+      </footer>
     </main>
   )
 }
