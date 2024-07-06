@@ -55,7 +55,7 @@ export default function About () {
         </div>
         <div className="flex justify-center mt-6">
           <Link href="/">
-            <a className="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-500">Back</a>
+            <div className="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-500">Back</div>
           </Link>
         </div>
       </div>
