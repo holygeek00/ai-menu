@@ -38,13 +38,13 @@ export default function About () {
         <h1 className="text-2xl text-white md:text-3xl lg:text-4xl font-bold mb-6 text-center">{currentTitle}</h1>
         <div className="flex flex-col space-y-4 text-gray-300">
           <p>
-            Hi there! I'm Nash, hailing from a southern province of China. Currently, I'm studying in Berlin, Germany, accompanied by my adorable cat, Tutu. 🐱
+            Hi there! I&apos;m Nash, hailing from a southern province of China. Currently, I&apos;m studying in Berlin, Germany, accompanied by my adorable cat, Tutu. 🐱
           </p>
           <p>
-            I'm not just an entrepreneur and a software engineer, but also a music lover, photography enthusiast, and a big fan of movies, reading, and traveling. 🎵📷🎬📚✈️
+            I&apos;m not just an entrepreneur and a software engineer, but also a music lover, photography enthusiast, and a big fan of movies, reading, and traveling. 🎵📷🎬📚✈️
           </p>
           <p>
-            I'm very outgoing and friendly, and I love meeting new people! Let's connect and share our passions and experiences. 😊
+            I&apos;m very outgoing and friendly, and I love meeting new people! Let&apos;s connect and share our passions and experiences. 😊
           </p>
           <p>
             You can find me on Instagram: <a href="https://instagram.com/nash.liu.98" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">nash.liu.98</a>
