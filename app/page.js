@@ -85,7 +85,7 @@ export default function Home () {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gray-100">
       <div className="max-w-md w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-center">{currentTitle}</h1>
+        <h1 className="text-2xl text-black md:text-3xl lg:text-4xl font-bold mb-6 text-center">{currentTitle}</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <label className="block">
