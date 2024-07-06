@@ -83,26 +83,26 @@ export default function Home () {
   }, [])
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gray-100">
-      <div className="max-w-md w-full bg-white p-6 md:p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl text-black md:text-3xl lg:text-4xl font-bold mb-6 text-center">{currentTitle}</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-4 md:p-24 bg-gradient-to-r from-gray-700 via-gray-900 to-black">
+      <div className="max-w-md w-full bg-gradient-to-r from-gray-800 to-gray-900 p-6 md:p-8 rounded-lg shadow-lg">
+        <h1 className="text-2xl text-white md:text-3xl lg:text-4xl font-bold mb-6 text-center">{currentTitle}</h1>
 
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
           <label className="block">
-            <span className="text-gray-700">Upload Image:</span>
+            <span className="text-gray-300">Upload Image:</span>
             <input
               type="file"
               onChange={handleFileChange}
-              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+              className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-200 focus:outline-none focus:ring focus:ring-gray-500"
               disabled={isLoading}
             />
           </label>
           <label className="block">
-            <span className="text-gray-700">Target Language:</span>
+            <span className="text-gray-300">Target Language:</span>
             <select
               value={targetLanguage}
               onChange={handleLanguageChange}
-              className="block w-full mt-1 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+              className="block w-full mt-1 text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-gray-500"
               disabled={isLoading}
             >
               <option value="">Select a language</option>
@@ -113,12 +113,12 @@ export default function Home () {
           </label>
           <button
             type="submit"
-            className="px-4 py-2 font-semibold text-white bg-blue-500 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-500"
+            className="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:outline-none focus:ring focus:ring-blue-500"
             disabled={isLoading}
           >
             {isLoading ? 'Uploading...' : 'Submit'}
           </button>
-          {message && <p className={`text-center mt-4 ${message.includes('successful') ? 'text-green-500' : 'text-red-500'}`}>{message}</p>}
+          {message && <p className={`text-center mt-4 ${message.includes('successful') ? 'text-green-400' : 'text-red-400'}`}>{message}</p>}
         </form>
 
         {isLoading && (
@@ -128,9 +128,9 @@ export default function Home () {
         )}
 
         {translatedText && (
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg shadow-inner">
-            <h2 className="text-xl font-semibold mb-2">Translated Text:</h2>
-            <ReactMarkdown className="prose text-black">{translatedText}</ReactMarkdown>
+          <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-inner">
+            <h2 className="text-xl text-blue-300 font-semibold mb-2">Translated Text:</h2>
+            <ReactMarkdown className="prose text-white">{translatedText}</ReactMarkdown>
           </div>
         )}
       </div>
